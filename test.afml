@@ -1,0 +1,6 @@
+[section1]
+username: "" ; String
+password: "" ; Secret
+cool: true ; Boolean
+age: 19 ; Number
+
