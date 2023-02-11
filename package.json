@@ -2,7 +2,7 @@
     "name": "afml-vscode",
     "displayName": "AFML Language Support",
     "description": "AFML (Another Fucking Markup Language) is a configuration file language that stores settings and parameters for a software application or system. It uses a structured format, such as JSON or YAML, to allow for easy interpretation and modification by both humans and software programs. AFML adds four types of variables to the configuration file: String, Number, Boolean, and Secret. String is used to store text-based data, Number is used to store numerical values, Boolean is used to store true/false values, and Secret is used to store sensitive information such as passwords or API keys. The output of Secret variables is hidden by default, but can be displayed if the main function is given the option to allowSecret.",
-    "version": "0.0.5",
+    "version": "0.0.7",
     "publisher": "Auth",
     "engines": {
         "vscode": "^1.33.0"

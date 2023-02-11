@@ -1,102 +1,85 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "fileTypes": [
-      "afml"
-  ],
-  "name": "AFML",
+  "fileTypes": ["afml"],
+  "name": "AFML Configuration Language",
   "scopeName": "source.afml",
   "patterns": [
-      {
-          "include": "#section"
-      },
-      {
-          "include": "#variable-declaration"
-      },
-      {
-          "include": "#type"
-      },
-      {
-          "include": "#boolean"
-      },
-      {
-          "include": "#comment"
-      },
-      {
-          "include": "#string"
-      },
-      {
-          "include": "#digits"
-      }
+    {
+      "include": "#section"
+    },
+    {
+      "include": "#variable-declaration"
+    },
+    {
+      "include": "#value"
+    },
+    {
+      "include": "#type"
+    },
+    {
+      "include": "#comment"
+    }
   ],
   "repository": {
-      "section": {
+    "section": {
+      "patterns": [
+        {
+          "name": "entity.name.tag.afml",
+          "begin": "\\[",
+          "end": "\\]"
+        }
+      ]
+    },
+    "variable-declaration": {
+      "patterns": [
+        {
+          "name": "entity.name.tag.afml",
+          "match": "^[ \\t]*[a-zA-Z][a-zA-Z0-9_]+:",
+          "captures": {
+            "0": {
+              "name": "entity.name.function.afml"
+            }
+          }
+        }
+      ]
+    },
+    "value": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.afml",
+          "match": "\"(?:\\\\.|[^\"\\\\])*\""
+        },
+        {
+          "name": "constant.numeric.afml",
+          "match": "\\b[0-9]+\\b"
+        },
+        {
+          "name": "constant.language.afml",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "type": {
+      "patterns": [
+        {
+          "name": "meta.type.declaration.afml",
+          "match": "\\*(Secret|String|Boolean|Number)\\b"
+        }
+      ]
+    },
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.afml",
+          "begin": "#",
+          "end": "$",
           "patterns": [
-              {
-                  "name": "entity.name.tag.afml",
-                  "begin": "\\[",
-                  "end": "\\]"
-              }
+            {
+              "include": "$self"
+            }
           ]
-      },
-      "variable-declaration": {
-          "patterns": [
-              {
-                  "name": "variable.declaration.afml",
-                  "match": "^[ \\t]*[a-zA-Z][a-zA-Z0-9]*:",
-                  "captures": {
-                      "0": {
-                          "name": "entity.name.function.afml"
-                      }
-                  }
-              }
-          ]
-      },
-      "string": {
-          "patterns": [
-              {
-                  "name": "string.quoted.double.afml",
-                  "match": "\"(?:\\\\.|[^\"\\\\])*\""
-              }
-          ]
-      },
-      "digits": {
-    "patterns": [
-      {
-        "name": "constant.numeric.afml",
-        "match": "\\b[0-9]+(?:.[0-9]+)?\\b"
-      }
-    ]
-  },
-      "type": {
-          "patterns": [
-              {
-                  "name": "meta.type.declaration.afml",
-                  "match": "\\b(String|Secret|Boolean|Number)\\b"
-
-              }
-          ]
-      },
-      "boolean": {
-          "patterns": [
-              {
-                  "name": "constant.language.afml",
-                  "match": "\\b(true|false)\\b"
-              }
-          ]
-      },
-      "comment": {
-          "patterns": [
-              {
-                  "name": "comment.line.number-sign.afml",
-                  "begin": "#",
-                  "end": "$",
-                  "patterns": [
-                      {
-                          "include": "$self"
-                      }
-                  ]
-              }
-          ]
-      }
+        }
+      ]
+    }
   }
 }
