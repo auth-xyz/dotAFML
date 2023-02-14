@@ -2,7 +2,7 @@
     "name": "afml-vscode",
     "displayName": "AFML Language Support",
     "description": "AFML (Another Fucking Markup Language)",
-    "version": "0.0.8",
+    "version": "0.1.0",
     "repository": {"url": "https://github.com/auth-xyz/dotafml"},
     "publisher": "Auth",
     "engines": {

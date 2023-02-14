@@ -1,85 +1,49 @@
 {
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "fileTypes": ["afml"],
-  "name": "AFML Configuration Language",
-  "scopeName": "source.afml",
-  "patterns": [
-    {
-      "include": "#section"
-    },
-    {
-      "include": "#variable-declaration"
-    },
-    {
-      "include": "#value"
-    },
-    {
-      "include": "#type"
-    },
-    {
-      "include": "#comment"
-    }
-  ],
-  "repository": {
-    "section": {
-      "patterns": [
+    "name": "AFML",
+    "scopeName": "source.afml",
+    "fileTypes": ["afml"],
+    "patterns": [
         {
-          "name": "entity.name.tag.afml",
-          "begin": "\\[",
-          "end": "\\]"
-        }
-      ]
-    },
-    "variable-declaration": {
-      "patterns": [
-        {
-          "name": "entity.name.tag.afml",
-          "match": "^[ \\t]*[a-zA-Z][a-zA-Z0-9_]+:",
-          "captures": {
-            "0": {
-              "name": "entity.name.function.afml"
+            "match": "\\[(\\w+)\\]",
+            "captures": {
+                "1": {
+                    "name": "entity.name.section.afml"
+                }
             }
-          }
-        }
-      ]
-    },
-    "value": {
-      "patterns": [
-        {
-          "name": "string.quoted.double.afml",
-          "match": "\"(?:\\\\.|[^\"\\\\])*\""
         },
         {
-          "name": "constant.numeric.afml",
-          "match": "\\b[0-9]+\\b"
+            "begin": "(?<=\\[\\w+\\]\\s*)\\w+(?=\\s*:\\s*)",
+            "end": "\\s*:",
+            "name": "variable.afml"
         },
         {
-          "name": "constant.language.afml",
-          "match": "\\b(true|false)\\b"
-        }
-      ]
-    },
-    "type": {
-      "patterns": [
-        {
-          "name": "meta.type.declaration.afml",
-          "match": "\\*(Secret|String|Boolean|Number)\\b"
-        }
-      ]
-    },
-    "comment": {
-      "patterns": [
-        {
-          "name": "comment.line.number-sign.afml",
-          "begin": "#",
-          "end": "$",
-          "patterns": [
-            {
-              "include": "$self"
+            "match": "(\\w+)\\s*:\\s*\"([^\"]*)\"\\s*\\*(\\w+)",
+            "captures": {
+                "1": {
+                    "name": "variable.afml"
+                },
+                "2": {
+                    "name": "string.unquoted.afml"
+                },
+                "3": {
+                    "name": "storage.type.afml"
+                }
             }
-          ]
+        },
+        {
+            "match": "(\\w+)\\s*:\\s*(\\d+)\\s*\\*(\\w+)",
+            "captures": {
+                "1": {
+                    "name": "variable.afml"
+                },
+                "2": {
+                    "name": "constant.numeric.afml"
+                },
+                "3": {
+                    "name": "storage.type.afml"
+                }
+            }
         }
-      ]
-    }
-  }
+    ],
+    "uuid": "f8e4a4aa-4f69-4f4b-8c2e-9b15aa5ab417"
 }
