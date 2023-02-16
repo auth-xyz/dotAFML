@@ -4,15 +4,18 @@
     "fileTypes": ["afml"],
     "patterns": [
         {
-            "match": "\\[(\\w+)\\]",
+            "match": "\\[(\\w+)(\\s*::\\s*\\((\\d+)\\))?\\]",
             "captures": {
                 "1": {
                     "name": "entity.name.section.afml"
+                },
+                "3": {
+                    "name": "constant.numeric.decimal.afml"
                 }
             }
         },
         {
-            "begin": "(?<=\\[\\w+\\]\\s*)\\w+(?=\\s*:\\s*)",
+            "begin": "(?<=\\[\\w+\\](\\s*::\\s*\\(\\d+\\))?\\s*)\\w+(?=\\s*:\\s*)",
             "end": "\\s*:",
             "name": "variable.afml"
         },
@@ -37,7 +40,7 @@
                     "name": "variable.afml"
                 },
                 "2": {
-                    "name": "constant.numeric.afml"
+                    "name": "constant.numeric.decimal.afml"
                 },
                 "3": {
                     "name": "storage.type.afml"
